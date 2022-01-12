@@ -6,12 +6,25 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct LIBERApp: App {
+    
+    @ObservedObject var firebaseManager = FirebaseManager.shared
+    
+    init() {
+        firebaseManager.getCurrentUser()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            switch firebaseManager.navigate {
+            case .landing:
+                MainHomeView()
+            case .home:
+                Home()
+            }
         }
     }
 }
