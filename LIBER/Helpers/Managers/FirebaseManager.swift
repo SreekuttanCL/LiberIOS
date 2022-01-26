@@ -24,7 +24,7 @@ final class FirebaseManager: ObservableObject{
     }
     
     //Firebase signup with email and password
-    func signUp(email: String, password: String, image: UIImage) {
+    func signUp(email: String, password: String, image: UIImage, firstName: String, lastName: String) {
         
         FirebaseAppManager.shared.auth.createUser(withEmail: email, password: password) { authResult, error in
             
@@ -32,7 +32,7 @@ final class FirebaseManager: ObservableObject{
                 print("Sign up error\(error.localizedDescription)")
             }
             else{
-                self.storeProfileImage(image: image, email: email)
+                self.storeProfileImage(image: image, email: email, firstName: firstName, lastName: lastName)
                 self.navigate = .landing
             }
         }
@@ -54,7 +54,7 @@ final class FirebaseManager: ObservableObject{
     }
     
     //storing image to firebase storage and downloading image url
-    func storeProfileImage(image: UIImage, email: String){
+    func storeProfileImage(image: UIImage, email: String, firstName: String, lastName: String){
         
         let ref = FirebaseAppManager.shared.storage.reference(withPath: getUID())
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return}
@@ -74,15 +74,15 @@ final class FirebaseManager: ObservableObject{
                     return
                 }
 
-                self.storeProfileImageUrl(profileImageUrl: url, email: email)
+                self.storeProfileImageUrl(profileImageUrl: url, email: email, firstName: firstName, lastName: lastName)
             }
         }
     }
     
     //storing email, uid and profileimageurl in firestore.
-    func storeProfileImageUrl(profileImageUrl: URL, email: String) {
+    func storeProfileImageUrl(profileImageUrl: URL, email: String, firstName: String, lastName: String) {
         
-        let userData = ["email": email, "uid": getUID(), "profileImageUrl": profileImageUrl.absoluteString]
+        let userData = ["email": email, "uid": getUID(), "profileImageUrl": profileImageUrl.absoluteString, "firstName": firstName, "lastName": lastName]
         
         FirebaseAppManager.shared.firestore.collection("users")
             .document(getUID()).setData(userData) { error in

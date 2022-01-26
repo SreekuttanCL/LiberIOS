@@ -14,5 +14,12 @@ internal func getUID() -> String {
     return UserId ?? "notFound"
 }
 
+//func getContactID() -> String {
+//
+//    let contactID = getUID() + Auth.auth().currentUser?.email
+//    return contactID
+//}
+
 //MARK: - Google Books API
 let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=harry+potter")
+

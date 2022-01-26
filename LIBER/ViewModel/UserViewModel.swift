@@ -28,8 +28,10 @@ class UserViewModel: ObservableObject {
             let uid = data["uid"] as? String ?? ""
             let email = data["email"] as? String ?? ""
             let profileImageUrl = data["profileImageUrl"] as? String ?? ""
+            let firstName = data["firstName"] as? String ?? ""
+            let lastName = data["lastName"] as? String ?? ""
             
-            self.user = User(uid: uid, email: email, profileImageUrl: profileImageUrl)
+            self.user = User(uid: uid, firstName: firstName, lastName: lastName, email: email, profileImageUrl: profileImageUrl)
         }
     }
 }

@@ -24,6 +24,13 @@
 		DA98232D278618700074D719 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA98232C278618700074D719 /* ErrorView.swift */; };
 		DA98232F2786187D0074D719 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA98232E2786187D0074D719 /* BookListView.swift */; };
 		DA982331278656320074D719 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA982330278656310074D719 /* SplashScreen.swift */; };
+		DAC138C727A1A768008FDA99 /* ContactListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC138C627A1A767008FDA99 /* ContactListVIew.swift */; };
+		DAC138C927A1A92B008FDA99 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC138C827A1A92B008FDA99 /* ContactViewModel.swift */; };
+		DAC138CB27A1A95C008FDA99 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC138CA27A1A95C008FDA99 /* ContactManager.swift */; };
+		DAC138CD27A1AB99008FDA99 /* AddNewContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC138CC27A1AB99008FDA99 /* AddNewContact.swift */; };
+		DAF1ADBD27A1CD360065D64A /* ContactContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF1ADBB27A1CD350065D64A /* ContactContainer.xcdatamodeld */; };
+		DAF1ADC127A1D0630065D64A /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1ADC027A1D0630065D64A /* CoreDataViewModel.swift */; };
+		DAF1ADC327A1DC650065D64A /* UpdateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1ADC227A1DC640065D64A /* UpdateContactView.swift */; };
 		DAFEB5492774DD3200E20B0A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DAFEB5482774DD3200E20B0A /* FirebaseAuth */; };
 		DAFEB54B2774DD3200E20B0A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DAFEB54A2774DD3200E20B0A /* FirebaseFirestore */; };
 		DAFEB54D2774DD3200E20B0A /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = DAFEB54C2774DD3200E20B0A /* FirebaseFirestoreSwift-Beta */; };
@@ -61,6 +68,13 @@
 		DA98232C278618700074D719 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		DA98232E2786187D0074D719 /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
 		DA982330278656310074D719 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		DAC138C627A1A767008FDA99 /* ContactListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListVIew.swift; sourceTree = "<group>"; };
+		DAC138C827A1A92B008FDA99 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		DAC138CA27A1A95C008FDA99 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
+		DAC138CC27A1AB99008FDA99 /* AddNewContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewContact.swift; sourceTree = "<group>"; };
+		DAF1ADBC27A1CD350065D64A /* Contact.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contact.xcdatamodel; sourceTree = "<group>"; };
+		DAF1ADC027A1D0630065D64A /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
+		DAF1ADC227A1DC640065D64A /* UpdateContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateContactView.swift; sourceTree = "<group>"; };
 		DAFEB5552774DEF200E20B0A /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		DAFEB5572774EF9E00E20B0A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		DAFEB55A2774F36B00E20B0A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -108,6 +122,7 @@
 		DA505C42276E599C00ECDDB1 /* LIBER */ = {
 			isa = PBXGroup;
 			children = (
+				DAF1ADBA27A1CD1E0065D64A /* CoreData */,
 				DA505C60276FE22700ECDDB1 /* Info.plist */,
 				DA505C56276E684E00ECDDB1 /* Helpers */,
 				DA505C53276E61AB00ECDDB1 /* Model */,
@@ -135,6 +150,8 @@
 			children = (
 				DAFEB55E277CE29900E20B0A /* UserViewModel.swift */,
 				DA982327278616340074D719 /* BookViewModel.swift */,
+				DAC138C827A1A92B008FDA99 /* ContactViewModel.swift */,
+				DAF1ADC027A1D0630065D64A /* CoreDataViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -147,6 +164,8 @@
 				DA505C5A276E6D8B00ECDDB1 /* Login.swift */,
 				DA505C5C276E6D9500ECDDB1 /* SignUp.swift */,
 				DAFEB563277CE5E100E20B0A /* MainHomeView.swift */,
+				DAC138CC27A1AB99008FDA99 /* AddNewContact.swift */,
+				DAF1ADC227A1DC640065D64A /* UpdateContactView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,8 +223,17 @@
 				DA98232A278618600074D719 /* LoadingView.swift */,
 				DA98232C278618700074D719 /* ErrorView.swift */,
 				DA98232E2786187D0074D719 /* BookListView.swift */,
+				DAC138C627A1A767008FDA99 /* ContactListVIew.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		DAF1ADBA27A1CD1E0065D64A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DAF1ADBB27A1CD350065D64A /* ContactContainer.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		DAFEB5542774DED200E20B0A /* Managers */ = {
@@ -214,6 +242,7 @@
 				DAFEB55C277CE11000E20B0A /* FirebaseAppManager.swift */,
 				DAFEB5552774DEF200E20B0A /* FirebaseManager.swift */,
 				DAFEB5572774EF9E00E20B0A /* ImagePicker.swift */,
+				DAC138CA27A1A95C008FDA99 /* ContactManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -319,8 +348,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA505C46276E599D00ECDDB1 /* ContentView.swift in Sources */,
+				DAC138C927A1A92B008FDA99 /* ContactViewModel.swift in Sources */,
 				DAFEB55F277CE29A00E20B0A /* UserViewModel.swift in Sources */,
+				DAC138C727A1A768008FDA99 /* ContactListVIew.swift in Sources */,
+				DAF1ADC327A1DC650065D64A /* UpdateContactView.swift in Sources */,
 				DA505C5D276E6D9500ECDDB1 /* SignUp.swift in Sources */,
+				DAC138CD27A1AB99008FDA99 /* AddNewContact.swift in Sources */,
 				DA982326278613410074D719 /* APIError.swift in Sources */,
 				DAFEB5562774DEF200E20B0A /* FirebaseManager.swift in Sources */,
 				DA982328278616340074D719 /* BookViewModel.swift in Sources */,
@@ -328,6 +361,7 @@
 				DA505C5B276E6D8B00ECDDB1 /* Login.swift in Sources */,
 				DAFEB55D277CE11100E20B0A /* FirebaseAppManager.swift in Sources */,
 				DA982323278612E90074D719 /* APIService.swift in Sources */,
+				DAF1ADC127A1D0630065D64A /* CoreDataViewModel.swift in Sources */,
 				DAFEB566277CE9EA00E20B0A /* User.swift in Sources */,
 				DA505C55276E624000ECDDB1 /* Home.swift in Sources */,
 				DA982320278612580074D719 /* Book.swift in Sources */,
@@ -336,7 +370,9 @@
 				DA505C59276E687F00ECDDB1 /* Extensions.swift in Sources */,
 				DA98232D278618700074D719 /* ErrorView.swift in Sources */,
 				DAFEB564277CE5E100E20B0A /* MainHomeView.swift in Sources */,
+				DAC138CB27A1A95C008FDA99 /* ContactManager.swift in Sources */,
 				DAFEB562277CE48600E20B0A /* Enums.swift in Sources */,
+				DAF1ADBD27A1CD360065D64A /* ContactContainer.xcdatamodeld in Sources */,
 				DA98232B278618600074D719 /* LoadingView.swift in Sources */,
 				DA98232F2786187D0074D719 /* BookListView.swift in Sources */,
 				DAFEB55B2774F36B00E20B0A /* Constants.swift in Sources */,
@@ -603,6 +639,19 @@
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		DAF1ADBB27A1CD350065D64A /* ContactContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DAF1ADBC27A1CD350065D64A /* Contact.xcdatamodel */,
+			);
+			currentVersion = DAF1ADBC27A1CD350065D64A /* Contact.xcdatamodel */;
+			path = ContactContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DA505C38276E599C00ECDDB1 /* Project object */;
 }

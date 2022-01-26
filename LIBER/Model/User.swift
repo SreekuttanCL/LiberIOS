@@ -6,8 +6,15 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 struct User {
     
-    let uid, email, profileImageUrl: String
+    let uid,firstName,lastName, email, profileImageUrl: String
+}
+
+struct Contact:Hashable {
+    
+    @DocumentID var uid: String?
+    let firstName,lastName, email, imageUrl, phoneNumber: String
 }

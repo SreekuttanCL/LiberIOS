@@ -12,7 +12,15 @@ struct MainHomeView: View {
     
     @ObservedObject var userVM = UserViewModel()
     @ObservedObject var bookVM = BookViewModel()
+    @ObservedObject var contactVM = ContactViewModel()
     @ObservedObject var firebaseManager = FirebaseManager.shared
+    @ObservedObject var contactManager = ContactManager.shared
+    
+    @State var showAddNewContact = false
+    @State var updateContactView = false
+    @State var isShareSheetShowing = false
+    
+    @StateObject var vm = CoreDataViewModel()
     
     var body: some View {
         NavigationView{
@@ -21,11 +29,55 @@ struct MainHomeView: View {
                 if bookVM.isLoading {
                     LoadingView()
                 }
-                else if bookVM.errorMessage != nil {
-                    ErrorView(bookVM: bookVM)
-                }
+//                else if bookVM.errorMessage != nil {
+//                    ErrorView(bookVM: bookVM)
+//                }
                 else {
-                    BookListView(books: bookVM.book)
+                    //BookListView(books: bookVM.book)
+                    //ContactListVIew(contact: vm.savedEntities)
+                    List{
+                        
+                        ForEach(vm.savedEntities) {entity in
+                            HStack{
+                                WebImage(url: URL(string: entity.imageUrl ?? ""))
+                                    .resizable()
+                                    .frame(width: 120, height: 120)
+                                    .cornerRadius(20)
+                                
+                                VStack(alignment:.leading){
+                                
+                                    HStack{
+                                        
+                                        Text(entity.firstName ?? "UnKnown")
+                                            .bold()
+                                        Text(entity.lastName ?? "UnKnown")
+                                            .bold()
+                                    }
+                                    
+                                    Text(entity.email ?? "UnKnown")
+                                        .font(.subheadline)
+                                    
+                                    Text(entity.phoneNumber ?? "UnKnown")
+                                        .font(.subheadline)
+                                }
+                            }
+                            .onTapGesture {
+                                //vm.updateContact(entity: entity)
+                                //updateContactView.toggle()
+                                isShareSheetShowing.toggle()
+                                
+                                let url = URL(string: "https://apple.com")
+                                let av = UIActivityViewController(activityItems: [url!],
+                                    applicationActivities: nil)
+                                
+                                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+                            }
+                        }
+                        .swipeActions {
+                            
+                        }
+                        
+                    }
                 }
             }
             .toolbar {
@@ -38,7 +90,7 @@ struct MainHomeView: View {
                         .scaledToFit()
                 }
                 ToolbarItem(placement: .principal) {
-                    Text("LIBER")
+                    Text(userVM.user?.firstName ?? "")
                         .bold()
                         .italic()
                     
@@ -52,6 +104,21 @@ struct MainHomeView: View {
                     }
                     
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showAddNewContact.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.black)
+                    }
+                    
+                }
+            }
+            .fullScreenCover(isPresented: $showAddNewContact, onDismiss: nil) {
+                AddNewContact(showAddNewContact: $showAddNewContact)
+            }
+            .fullScreenCover(isPresented: $updateContactView, onDismiss: nil) {
+                UpdateContactView(contact: vm, showAddNewContact: $updateContactView)
             }
         }
     }

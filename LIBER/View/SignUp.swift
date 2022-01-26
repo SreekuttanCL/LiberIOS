@@ -13,10 +13,12 @@ struct SignUp: View {
     
     @State var email = ""
     @State var password = ""
-    @State var confirmPassword = ""
+    @State var firstName = ""
+    @State var lastName = ""
     @State var image: UIImage?
     
     @State var showImagePicker = false
+    @State var showAlert = false
     
     var body: some View {
         VStack{
@@ -87,24 +89,50 @@ struct SignUp: View {
             })
             .padding(.top, 25)
             
-            VStack(alignment: .leading, spacing: 8, content: {
+            HStack{
                 
-                Text("Confirm Password")
-                    .fontWeight(.bold)
-                    .foregroundColor(.gray)
+                VStack(alignment: .leading, spacing: 8, content: {
+                    
+                    Text("FirstName")
+                        .fontWeight(.bold)
+                        .foregroundColor(.gray)
+                    
+                    TextField("FirstName", text: $firstName)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(Color("dark"))
+                        .padding(.top, 5)
+                    
+                    
+                    Divider()
+                })
+                    .padding(.top, 25)
                 
-                SecureField("********", text: $confirmPassword)
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(Color("dark"))
-                    .padding(.top, 5)
-                
-                
-                Divider()
-            })
-            .padding(.top, 25)
+                VStack(alignment: .leading, spacing: 8, content: {
+                    
+                    Text("LastName")
+                        .fontWeight(.bold)
+                        .foregroundColor(.gray)
+                    
+                    TextField("LastName", text: $lastName)
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(Color("dark"))
+                        .padding(.top, 5)
+                    
+                    
+                    Divider()
+                })
+                    .padding(.top, 25)
+            }
             
             //Continue button or arrow
-            Button(action: {firebaseManager.signUp(email: email, password: password, image: image!)}) {
+            Button(action: {
+                if email.isEmail {
+                    firebaseManager.signUp(email: email, password: password, image: image!, firstName: firstName, lastName: lastName)
+                }
+                else {
+                    self.showAlert.toggle()
+                }
+                }) {
                 
                 Image(systemName: "arrow.right")
                     .font(.system(size: 20, weight: .bold))
@@ -121,8 +149,19 @@ struct SignUp: View {
         .fullScreenCover(isPresented: $showImagePicker, onDismiss: nil) {
             ImagePicker(image: $image)
         }
+        .alert(isPresented:$showAlert) {
+            Alert(
+                title: Text("Please provide a valid Email"),
+                message: Text(""),
+                primaryButton: .destructive(Text("Ok")) {
+                    print("Deleting...")
+                },
+                secondaryButton: .cancel()
+            )
+        }
         .padding()
     }
+    
 }
 
 struct SignUp_Previews: PreviewProvider {

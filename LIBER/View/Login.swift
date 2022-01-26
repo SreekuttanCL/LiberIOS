@@ -13,6 +13,7 @@ struct Login: View {
     
     @State var email = ""
     @State var password = ""
+    @State var showAlert = false
     
     var body: some View {
         VStack{
@@ -69,7 +70,14 @@ struct Login: View {
             .padding(.top, 10)
             
             //Continue button or arrow
-            Button(action: {firebaseManager.login(email: email, password: password)}) {
+            Button(action: {
+                if email.isEmail {
+                    firebaseManager.login(email: email, password: password)
+                }
+                else {
+                    self.showAlert.toggle()
+                }
+                }) {
                 
                 Image(systemName: "arrow.right")
                     .font(.system(size: 20, weight: .bold))
@@ -82,6 +90,16 @@ struct Login: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 10)
 
+        }
+        .alert(isPresented:$showAlert) {
+            Alert(
+                title: Text("Please provide a valid Email"),
+                message: Text(""),
+                primaryButton: .destructive(Text("Ok")) {
+                    print("Deleting...")
+                },
+                secondaryButton: .cancel()
+            )
         }
         .padding()
     }
